@@ -1,0 +1,29 @@
+{
+  "name": "ssh2cli",
+  "version": "1.0.1",
+  "description": "An ssh2 shell asynchronous interceptor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shankscript/ssh2cli.git"
+  },
+  "keywords": [
+    "ssh",
+    "ssh2",
+    "cli",
+    "asynchronous",
+    "events"
+  ],
+  "author": "shankscript",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shankscript/ssh2cli/issues"
+  },
+  "homepage": "https://github.com/shankscript/ssh2cli#readme",
+  "dependencies": {
+    "ssh2": "^0.6.1"
+  }
+}
