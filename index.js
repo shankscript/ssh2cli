@@ -2,27 +2,27 @@ const Client = require('ssh2').Client;
 const readline = require('readline');
 const conn = new Client();
 
-function action(data, map) {
+function action(data, actionMap) {
     let ret = { cmd: null, once: false, ran: false };
-    for (let x in map) {
+    for (let x in actionMap) {
         if (data.indexOf(x) > -1) {
-            ret = map[x];
+            ret = actionMap[x];
         }
     }
     return ret;
 }
 
 module.exports = {
-    init: function({ config, map }) {
-        for (let x in map) {
-            console.log(x, Array.isArray(map[x]));
-            if (Array.isArray(map[x])) {
-                map[x].cmd = map[x][0];
-                map[x].once = map[x][1] === 'once';
-                map[x].ran = false;
+    init: function({ config, actionMap }) {
+        for (let x in actionMap) {
+            console.log(x, Array.isArray(actionMap[x]));
+            if (Array.isArray(actionMap[x])) {
+                actionMap[x].cmd = actionMap[x][0];
+                actionMap[x].once = actionMap[x][1] === 'once';
+                actionMap[x].ran = false;
             } else {
-                const cmd = map[x];
-                map[x] = {
+                const cmd = actionMap[x];
+                actionMap[x] = {
                     cmd,
                     once: false,
                     ran: false
@@ -44,7 +44,7 @@ module.exports = {
                     conn.end();
                     process.exit(0);
                 }).on('data', function(data) {
-                    const act = action(data.toString(), map);
+                    const act = action(data.toString(), actionMap);
                     if (act.cmd) {
                         if ((act.once && !act.ran) || (!act.once)) {
                             stream.write(act.cmd + '\n');
