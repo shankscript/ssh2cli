@@ -1,6 +1,6 @@
 {
   "name": "ssh2cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An ssh2 shell asynchronous interceptor",
   "main": "index.js",
   "scripts": {
